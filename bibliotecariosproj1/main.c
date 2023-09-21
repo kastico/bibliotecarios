@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#define MAX 30
-
-<<<<<<< HEAD
+#include <string.h>
 #define MAX 10
 #define MAX_STR 40
 
@@ -12,6 +10,8 @@ typedef struct{
     int ano;
     char editora[MAX_STR];
 }t_livro;
+
+
 
 void print_livro(t_livro livro){
     printf("Título: %s\tAutor: %s\nEditora: %s\t Ano: %d", livro.titulo, livro.autor, livro.editora, livro.ano);
@@ -23,17 +23,51 @@ void print_matriz(t_livro livros[], int n){
         print_livro(livros[i]);
 }
 
-int main() {
-int n_livros;
-t_livro livros[MAX];
+void le_ficheiro(FILE *fic,t_livro *livros,int *n){
 
-=======
+    int ano;
+    char tit[MAX],aut[MAX],edi[MAX];
+
+    while( (fscanf(fic,"%[^#]#%[^#]#%d#%[^#]",tit,aut,&ano,edi))!=EOF )
+    {
+        strcpy(livros->titulo,tit);
+        strcpy(livros->autor,aut);
+        livros->ano=ano;
+        strcpy(livros->editora,edi);
+        n++;
+        livros++;
+    }
+}
+
+void inserir_livro(t_livro *p){
+
+
+    printf("Introduza o título do livro: ");
+    fflush(stdin);
+    gets(p->titulo);
+
+    printf("\nIntroduza o autor do livro: ");
+    fflush(stdin);
+    gets(p->autor);
+
+    do {
+
+        printf("\nIntroduza o ano de publicação do livro: ");
+        scanf("%d", &p->ano);
+
+    }while(p->ano < 1500 && p-> ano > 2023);
+
+
+    printf("\nIntroduza a editora do livro: ");
+    fflush(stdin);
+    gets(p->editora);
+}
+
 FILE *abrir_ficheiro(char tipo[],char url[])
 {
 
     FILE *fic;
     char op='2';
->>>>>>> c86aaffa9f010205fee53643620b5c8cba2f22cc
 
     do
     {
@@ -71,19 +105,45 @@ FILE *abrir_ficheiro(char tipo[],char url[])
 
 }
 
+void escreve_ficheiro(FILE *fic, t_livro *livros,int n)
+{
 
-void le_ficheiro(FILE *fic,t_livro *livros,int *n){
-
-    int ano;
-    char tit[MAX],aut[MAX],edi[MAX];
-
-    while( (fscanf(fic,"%[^#]#%[^#]#%d#%[^#]",titulo,autor,&ano,editora))!=EOF )
+    for (int i=0; i<n; i++)
     {
-        strcpy(livros->titulo,tit);
-        strcpy(livros->autor,aut);
-        livros->ano=ano;
-        strcpy(livros->editora,edi);
-        n++;
+
+        fprintf (fic, "%s#%s#%d#%s", livros->titulo, livros->autor, livros->ano, livros->editora);
+
         livros++;
     }
+}
+
+
+void main ()
+
+{
+    int n_livros;
+    t_livro livros[MAX];
+    int op;
+    do{
+    system("cls");
+    printf("\n*** ** Gestao de livros ** ***\n\n");
+    printf("\n1- Lista de livros");
+    printf("\n2- Atualizar lista de livros");
+    printf("\n3- Sair\n");
+    scanf ("%d",&op);
+    }while((op=getchar())!= '1' && op != '2' && op != '3');
+
+    switch (op);
+
+        case 3:
+        break;
+
+        case 1:
+        break;
+
+        case 2:
+        break;
+
+    return op;
+
 }

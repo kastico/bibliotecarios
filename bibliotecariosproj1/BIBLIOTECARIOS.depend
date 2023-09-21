@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1695302408 source:c:\users\diogo\desktop\projeto_grupo2\bibliotecarios\bibliotecariosproj1\main.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
