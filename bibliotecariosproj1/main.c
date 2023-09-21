@@ -11,6 +11,8 @@ typedef struct{
     char editora[MAX_STR];
 }t_livro;
 
+
+
 void print_livro(t_livro livro){
     printf("Título: %s\tAutor: %s\nEditora: %s\t Ano: %d", livro.titulo, livro.autor, livro.editora, livro.ano);
 }
@@ -103,9 +105,45 @@ FILE *abrir_ficheiro(char tipo[],char url[])
 
 }
 
-int main() {
-int n_livros;
-t_livro livros[MAX];
-return 0;
+void escreve_ficheiro(FILE *fic, t_livro *livros,int n)
+{
+
+    for (int i=0; i<n; i++)
+    {
+
+        fprintf (fic, "%s#%s#%d#%s", livros->titulo, livros->autor, livros->ano, livros->editora);
+
+        livros++;
+    }
 }
 
+
+void main ()
+
+{
+    int n_livros;
+    t_livro livros[MAX];
+    int op;
+    do{
+    system("cls");
+    printf("\n*** ** Gestao de livros ** ***\n\n");
+    printf("\n1- Lista de livros");
+    printf("\n2- Atualizar lista de livros");
+    printf("\n3- Sair\n");
+    scanf ("%d",&op);
+    }while((op=getchar())!= '1' && op != '2' && op != '3');
+
+    switch (op);
+
+        case 3:
+        break;
+
+        case 1:
+        break;
+
+        case 2:
+        break;
+
+    return op;
+
+}
