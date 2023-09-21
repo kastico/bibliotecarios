@@ -1,12 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
+#define MAX 30
 
 
-int main() {
+void le_ficheiro(FILE *fic,t_livro *livros,int *n){
 
-printf("Olla");
+    int ano;
+    char tit[MAX],aut[MAX],edi[MAX];
 
-
-return 0;
-
+    while( (fscanf(fic,"%[^#]#%[^#]#%d#%[^#]",titulo,autor,&ano,editora))!=EOF )
+    {
+        strcpy(livros->titulo,tit);
+        strcpy(livros->autor,aut);
+        livros->ano=ano;
+        strcpy(livros->editora,edi);
+        n++;
+        livros++;
+    }
 }
